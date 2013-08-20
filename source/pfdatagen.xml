@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+    <name>com_pfdatagen</name>
+    <author>Tobias Kuhn</author>
+    <creationDate>August 2013</creationDate>
+    <copyright>(C) 2013 Tobias Kuhn. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>support@projectfork.net</authorEmail>
+    <authorUrl>www.projectfork.net</authorUrl>
+    <version>1.0.0</version>
+    <description>COM_PFDATAGEN_XML_DESCRIPTION</description>
+    <files folder="site">
+        <filename>pfdatagen.php</filename>
+    </files>
+    <administration>
+        <files folder="admin">
+            <folder>controllers</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>views</folder>
+            <filename>pfdatagen.php</filename>
+            <filename>controller.php</filename>
+        </files>
+        <languages folder="admin">
+            <language tag="en-GB">language/en-GB/en-GB.com_pfdatagen.ini</language>
+            <language tag="en-GB">language/en-GB/en-GB.com_pfdatagen.sys.ini</language>
+        </languages>
+    </administration>
+</extension>
