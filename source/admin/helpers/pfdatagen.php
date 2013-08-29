@@ -44,7 +44,7 @@ abstract class PFdatagenHelper
         $list['tasklist'] 		= JText::_('COM_PFDATAGEN_MODEL_TASKLISTS');
         $list['task'] 			= JText::_('COM_PFDATAGEN_MODEL_TASKS');
         $list['time'] 			= JText::_('COM_PFDATAGEN_MODEL_TIME');
-        //$list['topic'] 			= JText::_('COM_PFDATAGEN_MODEL_TOPICS');
+        $list['topic'] 			= JText::_('COM_PFDATAGEN_MODEL_TOPICS');
         //$list['reply'] 			= JText::_('COM_PFDATAGEN_MODEL_REPLIES');
         //$list['directory'] 		= JText::_('COM_PFDATAGEN_MODEL_DIRECTORIES');
         //$list['file'] 			= JText::_('COM_PFDATAGEN_MODEL_FILES');
