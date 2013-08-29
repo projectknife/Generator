@@ -37,19 +37,19 @@ abstract class PFdatagenHelper
     {
         $list = array();
 
-        // $list['group']      = JText::_('COM_PFDATAGEN_MODEL_GROUPS');
-        // $list['user']       = JText::_('COM_PFDATAGEN_MODEL_USERS');
-        $list['project']    = JText::_('COM_PFDATAGEN_MODEL_PROJECTS');
-        $list['milestone']  = JText::_('COM_PFDATAGEN_MODEL_MILESTONES');
-        $list['tasklist']   = JText::_('COM_PFDATAGEN_MODEL_TASKLISTS');
-        $list['task']       = JText::_('COM_PFDATAGEN_MODEL_TASKS');
-        // $list['time']      = JText::_('COM_PFDATAGEN_MODEL_TIME');
-        // $list['topic']     = JText::_('COM_PFDATAGEN_MODEL_TOPICS');
-        // $list['reply']     = JText::_('COM_PFDATAGEN_MODEL_REPLIES');
-        // $list['directory'] = JText::_('COM_PFDATAGEN_MODEL_DIRECTORIES');
-        // $list['file']      = JText::_('COM_PFDATAGEN_MODEL_FILES');
-        // $list['note']      = JText::_('COM_PFDATAGEN_MODEL_NOTES');
-        // $list['comment']   = JText::_('COM_PFDATAGEN_MODEL_COMMENTS');
+        //$list['group'] 			= JText::_('COM_PFDATAGEN_MODEL_GROUPS');
+        //$list['user'] 			= JText::_('COM_PFDATAGEN_MODEL_USERS');
+        $list['project'] 		= JText::_('COM_PFDATAGEN_MODEL_PROJECTS');
+        $list['milestone'] 		= JText::_('COM_PFDATAGEN_MODEL_MILESTONES');
+        $list['tasklist'] 		= JText::_('COM_PFDATAGEN_MODEL_TASKLISTS');
+        $list['task'] 			= JText::_('COM_PFDATAGEN_MODEL_TASKS');
+        $list['time'] 			= JText::_('COM_PFDATAGEN_MODEL_TIME');
+        //$list['topic'] 			= JText::_('COM_PFDATAGEN_MODEL_TOPICS');
+        //$list['reply'] 			= JText::_('COM_PFDATAGEN_MODEL_REPLIES');
+        //$list['directory'] 		= JText::_('COM_PFDATAGEN_MODEL_DIRECTORIES');
+        //$list['file'] 			= JText::_('COM_PFDATAGEN_MODEL_FILES');
+        //$list['note'] 			= JText::_('COM_PFDATAGEN_MODEL_NOTES');
+        //$list['comment'] 		= JText::_('COM_PFDATAGEN_MODEL_COMMENTS');
 
         return $list;
     }
@@ -593,7 +593,7 @@ abstract class PFdatagenHelper
         $db    = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        $query->select('id, title, alias, created, created_by, modified, modified_by, access, state, start_date, end_date')
+        $query->select('id, title, alias, created, created_by, modified, modified_by, access, state, start_date, end_date, rate')
               ->from('#__pf_tasks')
               ->where('id = ' . $id);
 
@@ -652,4 +652,23 @@ abstract class PFdatagenHelper
 
         return $labels;
     }
+	
+	/**
+	* Returns a random task rate
+	*
+	* @param     integer    $value    Optional task rate
+	*
+	* @return    float    The task rate
+	*/
+	public static function getRandomTaskRate($value = 0)
+	{
+		$rate = rand(0, 100) . '.' . rand(0, 99);
+
+		if ($value > 0){
+			$rates = array($value, $rate);
+			return $rates[rand(0,1)];
+		}
+
+		return $rate;		
+	}	
 }
