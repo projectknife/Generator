@@ -45,7 +45,7 @@ abstract class PFdatagenHelper
         $list['task'] 			= JText::_('COM_PFDATAGEN_MODEL_TASKS');
         $list['time'] 			= JText::_('COM_PFDATAGEN_MODEL_TIME');
         $list['topic'] 			= JText::_('COM_PFDATAGEN_MODEL_TOPICS');
-        //$list['reply'] 			= JText::_('COM_PFDATAGEN_MODEL_REPLIES');
+        $list['reply'] 			= JText::_('COM_PFDATAGEN_MODEL_REPLIES');
         //$list['directory'] 		= JText::_('COM_PFDATAGEN_MODEL_DIRECTORIES');
         //$list['file'] 			= JText::_('COM_PFDATAGEN_MODEL_FILES');
         //$list['note'] 			= JText::_('COM_PFDATAGEN_MODEL_NOTES');
@@ -671,4 +671,51 @@ abstract class PFdatagenHelper
 
 		return $rate;		
 	}	
+	
+	/**
+	* Returns a random forum topic
+	*
+	* @param     integer    $project    The Project 
+	*
+	* @return		object		The Topic record
+	*/
+	
+	public static function getRandomTopic ($project)
+	{
+		static $cache = array();
+
+		if (!isset($cache[$project])) {
+			$db    = JFactory::getDbo();
+			$query = $db->getQuery(true);
+
+			$query->select('id')
+				->from('#__pf_topics')
+				->where('project_id = ' . $project)
+				->order('id ASC');
+
+			$db->setQuery($query);
+			$cache[$project] = $db->loadColumn();
+
+			if (empty($cache[$project])) $cache[$project] = array();
+
+			return self::getRandomMilestone($project);
+		}
+
+		$max = count($cache[$project]);
+
+		if ($max == 0) return false;
+
+		$id    = $cache[$project][rand(0, $max - 1)];
+		$db    = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$query->select('id, title, description, alias, created, created_by, modified, modified_by, access, state')
+              ->from('#__pf_topics')
+              ->where('id = ' . $id);
+
+		$db->setQuery($query);
+		$object = $db->loadObject();
+
+		return $object;
+	}
 }
