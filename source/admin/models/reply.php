@@ -146,7 +146,7 @@ class PFdatagenModelReply extends JModelLegacy
 		$query = $db->getQuery(true);
 
 		// Randomise the creation date
-		$query->update('#__pf_timesheet')
+		$query->update('#__pf_replies')
 			->set('created = ' . $db->quote($data['created']))
 			->where('id = ' . (int) $id);
 

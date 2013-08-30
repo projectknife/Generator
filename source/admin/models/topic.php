@@ -140,7 +140,7 @@ class PFdatagenModelTopic extends JModelLegacy
 		$query = $db->getQuery(true);
 
 		// Randomise the creation date
-		$query->update('#__pf_timesheet')
+		$query->update('#__pf_topics')
 			->set('created = ' . $db->quote($data['created']))
 			->where('id = ' . (int) $id);
 
